@@ -1,4 +1,5 @@
 let display = document.getElementById('display');
+let previousDisplay = document.getElementById('previousDisplay');
 let currentInput = '';
 let operator = '';
 let previousInput = '';
@@ -6,10 +7,16 @@ let previousInput = '';
 function updateDisplay() {
     if (currentInput === '' && previousInput === '' && operator === '') {
         display.textContent = '0';
+        previousDisplay.textContent = '';
     } else if (operator && currentInput === '') {
-        display.textContent = previousInput + ' ' + operator;
+        display.textContent = previousInput;
+        previousDisplay.textContent = previousInput + ' ' + operator;
+    } else if (operator) {
+        display.textContent = currentInput;
+        previousDisplay.textContent = previousInput + ' ' + operator;
     } else {
         display.textContent = currentInput || previousInput;
+        previousDisplay.textContent = '';
     }
 }
 
